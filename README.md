@@ -89,46 +89,4 @@ $ psql -U <username> <database_name>     <     <path to pgsql file inside  conta
 ```
 $ yarn db:migrate:all
 ```
-## NGINX Configuration
-
-- After installing nginx go to below directory:
-```
- etc/nginx/sites-enabled/default
-```
-- Copy paste these codes: 
-
-```
-upstream back-end {
-
-        server localhost:8000;
-
-}
-
-upstream storage {
-	server localhost:8011;
-}
-
-```
-Copy paste below code in the server block of  `default` file: 
-
-```
-location /core/ {
-
-                proxy_pass http://back-end/;
-
-}
-
-
-location /customer-home/ {
-
-                proxy_pass http://customer-home/;
-
-}
-
-location /storage/ {
-		proxy_pass http://storage/;
-}
-```
-
-
 
